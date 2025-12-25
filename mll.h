@@ -48,6 +48,10 @@ void addPelanggan(adrMekanik &p, adrPelanggan q);
 adrMekanik searchMekanik(ListBengkel L, string no_telp);
 bool searchPelangganAll(ListBengkel L, string motor);
 adrPelanggan searchPelangganByMekanik(adrMekanik p, string plat);
+void deleteFirstMekanik(ListBengkel &L, adrMekanik p);
+void deleteLastMekanik(ListBengkel &L, adrMekanik p);
+void deleteAfterMekanik(ListBengkel &L, adrMekanik p, adrMekanik);
+void deleteMekanik(ListBengkel &L, string no_telp);
 void deletePelanggan(ListBengkel L, string motor);
 void displayList(ListBengkel L);
 

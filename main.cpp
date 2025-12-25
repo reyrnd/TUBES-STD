@@ -20,7 +20,9 @@ int main(){
         cout << "2. Tambah Pelanggan" << endl;
         cout << "3. Hapus semua pelanggan berdasarkan jenis motor" << endl;
         cout << "4. Cari pelanggan berdasarkan mekanik" << endl;
-        cout << "5. Tampilkan data bengkel" << endl;
+        cout << "5. Hapus mekanik berdasarkan nomor telepon" << endl;
+        cout << "6. Tampilkan data bengkel" << endl;
+        cout << "0. Berhenti" << endl;
         cout << "Pilih Menu: ";
         cin >> menu;
 
@@ -93,11 +95,18 @@ int main(){
 
                 break;
             case 5:
+                cout << "Pilih mekanik yang ingin dihapus (pake nomor telepon): ";
+                cin >> no_telp;
+
+                deleteMekanik(L, no_telp);
+                break;
+            case 6:
                 cout << "\n\tData Bengkel" << endl;
+                cout << "======================================" << endl;
                 displayList(L);
                 break;
             default:
-                cout << "PILIH MENU YANG BENAR!!!!"
+                cout << "PILIH MENU YANG BENAR!!!!" << endl;
         }
     } while(menu != 0);
     return 0;

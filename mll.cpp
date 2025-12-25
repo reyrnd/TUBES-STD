@@ -140,6 +140,76 @@ adrPelanggan searchPelangganByMekanik(adrMekanik p, string plat){
     return nullptr;
 }
 
+void deleteFirstMekanik(ListBengkel &L, adrMekanik p) {
+    p = L.first;
+
+    if (L.first == L.last) {
+        L.first = NULL;
+        L.last = NULL;
+    } else {
+        L.first = p->next;
+        L.first->prev = NULL;
+        p->next = NULL;
+    }
+}
+
+void deleteLastMekanik(ListBengkel &L, adrMekanik p){
+    p = L.last;
+
+    if (L.first == L.last) {
+        L.first = NULL;
+        L.last = NULL;
+    } else {
+        L.last = p->prev;
+        L.last->next = NULL;
+        p->prev = NULL;
+    }
+}
+
+void deleteAfterMekanik(ListBengkel &L, adrMekanik p, adrMekanik prec){
+    p = prec->next;
+
+    prec->next = p->next;
+    if (p->next != NULL) {
+        p->next->prev = prec;
+    } else {
+        L.last = prec;
+    }
+
+    p->next = NULL;
+    p->prev = NULL;
+}
+
+void deleteMekanik(ListBengkel &L, string no_telp) {
+    if(isEmptyMekanik(L)) {
+        cout << "Belum ada daftar mekanik" << endl << endl;
+        return;
+    }
+
+    adrMekanik p = searchMekanik(L, no_telp);
+    string berhasil = "Mekanik berhasil dihapus!!";
+
+    if (p == NULL) {
+        cout << "Mekanik tidak ditemukan\n";
+        return;
+    }
+
+    if (p == L.first) {
+        deleteFirstMekanik(L, p);
+        cout << berhasil << endl;
+        return;
+    }
+
+    if (p == L.last) {
+        deleteLastMekanik(L, p);
+        cout << berhasil << endl;
+        return;
+    }
+
+    deleteAfterMekanik(L, p, p->prev);
+    cout << berhasil << endl;
+}
+
 void deletePelanggan(ListBengkel L, string motor) {
     adrMekanik m = L.first;
 
@@ -172,7 +242,7 @@ void displayList(ListBengkel L){
     adrMekanik p = L.first;
 
     if(p == nullptr) {
-        cout << "BELUM ADA DATA BENGKEL" << endl;
+        cout << "BELUM ADA DATA BENGKEL" << endl << endl;
     }
 
     while (p != nullptr){
